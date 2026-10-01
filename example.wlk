@@ -47,7 +47,8 @@ class ProfesionalLibre {
 
 }
 
-class EmpresaDeServicios {
+class EmpresaDeServicio {
+
     var profesionales
 
     method profesionales() = profesionales
@@ -76,35 +77,12 @@ class EmpresaDeServicios {
         return profesionales.all({ unProfesional => unProfesional.provincia().size() <= 3 })
     }
 
-    
 }
 
 // universidad
 
 
 
-const universidadDeSanMartin = 
-    new Universidad(
-        provincia = "Buenos Aires",
-        honorario = 3500
-    )
 
-const universidadDeRosario =
-    new Universidad(
-        provincia = "Santa Fe",
-        honorario = 2800
-    )
-
-const universidadDeCorrientes =
-    new Universidad(
-        provincia = "Corrientes",
-        honorario = 4200
-    )
-
-const universidadDeHurlingham =
-    new Universidad(
-        provincia = "Buenos Aires",
-        honorario = 8800
-    )
 
 // mis profesionales
