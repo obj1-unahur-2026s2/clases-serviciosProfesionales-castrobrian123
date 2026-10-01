@@ -1,4 +1,12 @@
 
+class Universidad {
+    var provincia
+    var honorario
+
+    method provincia() = provincia
+
+    method honorario() = honorario
+}
 
 class ProfesionalVinculado {
     var universidad
@@ -17,32 +25,63 @@ class ProfesionalAsociado {
 
     method honorario() = 3000
 
-    method provinciasDondePuedeTrabajar() = ["Entre Ríos", "Santa Fe", "Corrientes"]
+    var provinciasHabilitadas = ["Entre Ríos", "Santa Fe", "Corrientes"]
+
+    method provinciasDondePuedeTrabajar() = provinciasHabilitadas
 }
 
 
 class ProfesionalLibre {
+
     var universidad
-    var honorario
-    var provincia
 
     method universidad() = universidad
 
+    var honorario
+
     method honorario() = honorario
 
-    method provinciasDondePuedeTrabajar() = provincia
+    var provinciasDondePuedeTrabajar
+
+    method provinciasDondePuedeTrabajar() = provinciasDondePuedeTrabajar
+
+}
+
+class EmpresaDeServicios {
+    var profesionales
+
+    method profesionales() = profesionales
+
+    var honorarioDeReferencia
+
+    method honorarioDeReferencia() = honorarioDeReferencia
+
+    method cantidadDeProfesionalesQueEstudiaronEn(unaUniversidad){
+        return profesionales.count({ unProfesional => unProfesional.universidad() == unaUniversidad })
+    }
+
+    method obtenerProfesionalesCaros(){
+        return profesionales.filter({ unProfesional => unProfesional.honorario() > self.honorarioDeReferencia() }).asSet() //pongo asSet() por que dice conjunto
+    }
+
+    method obtenerUniversidadesFormadoras(){
+        return profesionales.map({ unProfesional => unProfesional.universidad() }).asSet() //pongo asSet() por que dice conjunto
+    }
+
+    method obtenerProfesionalConHonorarioMasBajo(){
+        return profesionales.min({ unProfesional => unProfesional.honorario() })
+    }
+
+    method esGenteAcotada(){ //el nombre del metodo del enunciado es muy poco claro 
+        return profesionales.all({ unProfesional => unProfesional.provincia().size() <= 3 })
+    }
+
+    
 }
 
 // universidad
 
-class Universidad {
-    var provincia
-    var honorario
 
-    method provincia() = provincia
-
-    method honorario() = honorario
-}
 
 const universidadDeSanMartin = 
     new Universidad(
